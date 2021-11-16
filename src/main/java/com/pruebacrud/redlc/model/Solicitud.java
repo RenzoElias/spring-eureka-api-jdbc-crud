@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class Solicitud {
+public class Solicitud { // Response
 
 	private Integer idSolicitud;
 	private String fechaRegistro;

@@ -5,16 +5,16 @@ import lombok.Data;
 @Data  
 public class Persona {
 	
-	private Integer idPersona;
-	private String nombres;
-	private String apePaterno;
-	private String apeMaterno;
-	private String nombresCompletos;
-	private String nombreCargo;
-	private String nombreArea;
+	private Integer idPersona; //id_persona
+	private String nombres; //nombres
+	private String apePaterno; //a_paterno
+	private String apeMaterno; //a_materno
+	private String nombresCompletos; // CONCAT
+	private String nombreCargo; //descripcion_rol
+	private String nombreArea; //descripcion_area
 	
 	private Rol rol;
-	private Parametro id002Cargo;
+	private Parametro id002Cargo; //id_rol
 	private Parametro id003Area;
 	private Parametro id001Estado;
 	

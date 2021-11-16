@@ -16,7 +16,7 @@ public class SolicitudRepository {
 	@Autowired
 	JdbcTemplate requerimientosPg;
 	
-	public List<Solicitud> obtenerSolicitudes(Integer idSolicitud){
+	public List<Solicitud> obtenerSolicitudes(Integer idSolicitud){ // ObtenerSolicitudes o una Solicitud con el id
 		StringBuilder sql = new StringBuilder();
 		List<Solicitud> solicitud = null;
 		sql.append(" select r.id_requerimiento, r.fecha_registro, ");
@@ -32,7 +32,7 @@ public class SolicitudRepository {
 		sql.append(" left join requerimiento.persona portador on portador.id_persona = r.id_usuario_actual");
 		sql.append(" left join requerimiento.parametro tipo on tipo.id_parametro = r.id_003_tipo_requerimiento");
 		sql.append(" where 1=1 ");
-		if(idSolicitud!=null)sql.append(" and id_requerimiento = "+idSolicitud);
+		if(idSolicitud!=null)sql.append(" and id_requerimiento = "+idSolicitud); // obtenerUnaSolicitud
 		sql.append(" order by id_requerimiento desc");
 		try {
 //			Object[] params = new Object[] {idSolicitud};
@@ -52,15 +52,17 @@ public class SolicitudRepository {
 		sql.append(" values ");
 		sql.append(" ( ?, ?, ?, ?, current_date) ");
 		
-		Object[] params = new Object[] {};
-//				objeto.getDescripcion(), objeto.getId003TipoSolicitud(),
-//				objeto.getIdUsuarioSolicitante(), Constantes.USUARIO_COORDINADOR_HELPDESK};
+		Object[] params = {
+				objeto.getDescripcion(), objeto.getId003TipoSolicitud(),
+				objeto.getIdUsuarioSolicitante(), Constantes.USUARIO_COORDINADOR_HELPDESK};
+//				new Object[] {};
+		
 		requerimientosPg.update(sql.toString(), params);
 	}
 	public void editarRequerimiento(Integer idRequerimiento) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("update requerimiento.requerimiento ");
-		sql.append("set id_ ");
+		sql.append("set id_ "); // Falta que es lo que se va editar, que PARAMS // Falta eso
 		sql.append(" WHERE id_requerimiento = ? ");
 		Object[] params = new Object[] {idRequerimiento};
 		requerimientosPg.update(sql.toString(), params);
@@ -68,8 +70,8 @@ public class SolicitudRepository {
 	public void eliminarRequerimiento(Integer idRequerimiento) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("DELETE FROM requerimiento.requerimiento ");
-		
 		sql.append(" WHERE id_requerimiento = ? ");
+		
 		Object[] params = new Object[] {idRequerimiento};
 		requerimientosPg.update(sql.toString(), params);
 	}

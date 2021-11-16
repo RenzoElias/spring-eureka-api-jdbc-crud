@@ -5,9 +5,9 @@ import lombok.Data;
 @Data 
 public class Parametro {
 
-	private Integer idParametro;
-	private Integer idParametroTipo;
-	private String nombre;
+	private Integer idParametro; //id_parametro
+	private Integer idParametroTipo; //id_parametro_tipo
+	private String nombre; //nombre
 	public Integer getIdParametro() {
 		return idParametro;
 	}
